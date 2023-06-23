@@ -54,4 +54,4 @@ jobs:
           base64-kube-config: ${{ secrets.KUBE_CONFIG }}
 
       - name: run kubectl
-        run: kubectl get pods
+        run: kubectl apply -f k8s/k8s.yaml
