@@ -15,7 +15,7 @@ spec:
         app: echoserver
     spec:
       containers:
-        - image: 658717967470.dkr.ecr.ap-southeast-1.amazonaws.com/demoapp:v4
+        - image: 658717967470.dkr.ecr.ap-southeast-1.amazonaws.com/demoapp:v5
           name: echoserver
           ports:
             - containerPort: 80

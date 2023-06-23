@@ -31,3 +31,4 @@ docker push 658717967470.dkr.ecr.ap-southeast-1.amazonaws.com/demoapp:v1
 ```
 
 Unable to create application: application spec for simple-app is invalid: InvalidSpecError: Unable to generate manifests in /: rpc error: code = Unknown desc = /: app path is absolute
+
