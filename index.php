@@ -12,4 +12,4 @@
 //    exit();
 //}
 
-echo "I am v3";
+echo "Welcome ArgoCD";
