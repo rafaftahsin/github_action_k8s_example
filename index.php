@@ -12,6 +12,6 @@ if ($conn->connect_errno) {
     exit();
 }
 else {
-    echo "Connected Successfully - While in meeting with Andy";
+    echo "Connected Successfully - On branch Dev";
 }
 
