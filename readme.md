@@ -29,3 +29,5 @@ aws ecr get-login-password --region ap-southeast-1 --profile edhub | docker logi
 docker tag rafaftahsin/simple_apache_app:v1  658717967470.dkr.ecr.ap-southeast-1.amazonaws.com/demoapp:v1
 docker push 658717967470.dkr.ecr.ap-southeast-1.amazonaws.com/demoapp:v1
 ```
+
+Unable to create application: application spec for simple-app is invalid: InvalidSpecError: Unable to generate manifests in /: rpc error: code = Unknown desc = /: app path is absolute
