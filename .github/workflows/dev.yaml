@@ -49,11 +49,7 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       - name: deploy to cluster
-        uses: neosec-com/kubectl-aws-eks@1.1.2
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG }}
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: demoapp
-          IMAGE_TAG: ${{ github.sha }}
+        uses: tale/kubectl-action@v1
         with:
-          args: kubectl apply -f k8s/k8s.yaml
+          base64-kube-config: ${{ secrets.KUBE_CONFIG }}
+        run: kubectl get pods
