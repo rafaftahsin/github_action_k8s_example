@@ -15,7 +15,7 @@ spec:
         app: demoapp
     spec:
       containers:
-        - image: 658717967470.dkr.ecr.ap-southeast-1.amazonaws.com/demoapp:${{github.sha}}
+        - image: 658717967470.dkr.ecr.ap-southeast-1.amazonaws.com/demoapp:${IMAGE_TAG}
           name: demoapp
           ports:
             - containerPort: 80
