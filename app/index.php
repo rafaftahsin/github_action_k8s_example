@@ -25,3 +25,5 @@ else {
     }
 }
 
+echo "Hello World. The k8s Dev Environment is up & Running, enjoy";
+
