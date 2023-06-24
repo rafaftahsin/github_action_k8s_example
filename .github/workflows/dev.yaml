@@ -42,6 +42,7 @@ jobs:
           MYSQL_DB: ${{ secrets.MYSQL_DB }}
 
       - name: Build, tag, and push image to Amazon ECR
+        # continue-on-error: true # Uncomment when you want to build pipeline even the image is exists
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ github.event.repository.name }}
