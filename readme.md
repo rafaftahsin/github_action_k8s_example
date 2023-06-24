@@ -33,5 +33,5 @@ Unable to create application: application spec for simple-app is invalid: Invali
 See your service up and running 
 
 ```
-kubectl port-forward service/echoserver 8000:80
+kubectl port-forward service/demoapp 8000:80
 ```
