@@ -1,8 +1,4 @@
-name: 'Link Checker: All English'
-
-# **What it does**: Renders the content of every page and check all internal links.
-# **Why we have it**: To make sure all links connect correctly.
-# **Who does it impact**: Docs content.
+name: 'Dev Pipeline'
 
 on:
   workflow_dispatch:
@@ -13,11 +9,6 @@ on:
 
 env:
   SERVER: dev
-
-#concurrency:
-#  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
-#  cancel-in-progress: true
-
 
 jobs:
   build:
@@ -42,7 +33,7 @@ jobs:
       - name: Build, tag, and push image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: demoapp
+          ECR_REPOSITORY: ${{ github.event.repository.name }}
           IMAGE_TAG: ${{github.sha}}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -56,10 +47,13 @@ jobs:
       - name: Render Deployment YAML
         uses: nowactions/envsubst@v1
         with:
-          input: ./k8s/k8s.yaml.tmpl
-          output: ./k8s/k8s.yaml
+          input: ./.github/k8s/k8s.yaml.tmpl
+          output: ./.github/k8s/k8s.yaml
         env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ github.event.repository.name }}
+          APP_NAME: ${{ github.event.repository.name }}
           IMAGE_TAG: ${{ github.sha }}
 
       - name: run kubectl
-        run: kubectl apply -f k8s/k8s.yaml
+        run: kubectl apply -f .github/k8s/k8s.yaml

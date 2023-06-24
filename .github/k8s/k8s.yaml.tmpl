@@ -2,28 +2,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demoapp
+  name: ${APP_NAME}
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: demoapp
+      app: ${APP_NAME}
   replicas: 1
   template:
     metadata:
       labels:
-        app: demoapp
+        app: ${APP_NAME}
     spec:
       containers:
-        - image: 658717967470.dkr.ecr.ap-southeast-1.amazonaws.com/demoapp:${IMAGE_TAG}
-          name: demoapp
+        - image: ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
+          name: ${APP_NAME}
           ports:
             - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: demoapp
+  name: ${APP_NAME}
   namespace: default
 spec:
   ports:
@@ -31,4 +31,4 @@ spec:
       protocol: TCP
   type: ClusterIP
   selector:
-    app: demoapp
+    app: ${APP_NAME}
