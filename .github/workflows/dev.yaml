@@ -30,6 +30,17 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+      - name: Render Dockerfile
+        uses: nowactions/envsubst@v1
+        with:
+          input: ./Dockerfile.tmpl
+          output: ./Dockerfile
+        env:
+          MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+          MYSQL_USER: ${{ secrets.MYSQL_USER }}
+          MYSQL_PASS: ${{ secrets.MYSQL_PASS }}
+          MYSQL_DB: ${{ secrets.MYSQL_DB }}
+
       - name: Build, tag, and push image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}

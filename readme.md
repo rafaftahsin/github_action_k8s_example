@@ -3,9 +3,7 @@
 
 1. Create DB, DB User and Grants
 
-connect mysql db with `mysql -u dbadmin -h mysql.edhubdevelopment.com -p`
-
-W3goh50NkcTlhnCm
+connect mysql db with `mysql -u ${MYSQL_USER} -h ${MYSQL_HOST} -p`
 
 ```
 CREATE USER 'wpuser'@'localhost' IDENTIFIED BY 'Wp123#';

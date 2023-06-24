@@ -1,0 +1,8 @@
+FROM php:7.4-apache
+ARG DEBIAN_FRONTEND=noninteractive
+ENV MYSQL_HOST ${MYSQL_HOST}
+ENV MYSQL_USER ${MYSQL_USER}
+ENV MYSQL_PASS ${MYSQL_PASS}
+ENV MYSQL_DB ${MYSQL_DB}
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+COPY ./ /var/www/html/
